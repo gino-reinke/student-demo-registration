@@ -1,0 +1,9 @@
+:root {
+    /* Colors */
+    --color-primary: #005461;
+    --color-secondary: #37383E;
+    --color-grayText: #8692A6;
+
+    /* Fonts */
+    --font-raleway: 'Raleway';
+}
