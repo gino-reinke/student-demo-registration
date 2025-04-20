@@ -16,4 +16,7 @@
 .rightPane {
     flex-grow: 1;
     height: 100vh;
+    display: flex;
+    justify-content: flex-end; /* push content to right */
 }
+  
