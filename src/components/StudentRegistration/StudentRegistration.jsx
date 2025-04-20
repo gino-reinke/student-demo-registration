@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import styles from './StudentRegistration.module.css';
+import { useNavigate } from 'react-router-dom';
 
 export const StudentRegistration = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -25,6 +28,10 @@ export const StudentRegistration = () => {
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.contentWrapper}>
+        <div className={styles.backButton} onClick={() => navigate('/')}>
+          <span className={styles.backArrow}>←</span> Back
+        </div>
+        
         <span className={styles.title}>Select Preferred Time Slot</span>
         <span className={styles.subtitle}>
           Select your preferred time slot. Please ensure you arrive 10 minutes before your time.

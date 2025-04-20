@@ -15,6 +15,21 @@
   align-items: flex-start;
 }
 
+.backButton {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #7a7a7a;
+  cursor: pointer;
+  margin-bottom: 20px;
+  user-select: none;
+}
+
+.backArrow {
+  font-size: 24px;
+  margin-right: 6px;
+}
+
 /* Text Styles */
 .title {
   font-size: 40px;
