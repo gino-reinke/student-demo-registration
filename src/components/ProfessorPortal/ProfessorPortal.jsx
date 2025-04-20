@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './ProfessorPortal.module.css';
 import { getImageUrl } from '../../utils';
+import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebase';
 import {
   collection,
@@ -11,8 +12,8 @@ import {
 } from 'firebase/firestore';
 
 export const ProfessorPortal = () => {
+  const navigate = useNavigate();
   const [registrations, setRegistrations] = useState([]);
-  const [timeSlots, setTimeSlots] = useState([]);
 
   const defaultSlots = [
     '4/19/2070, 6:00 PM – 7:00 PM',
@@ -37,7 +38,7 @@ export const ProfessorPortal = () => {
     if (!confirmDelete) return;
 
     await deleteDoc(doc(db, 'registrations', id));
-    fetchRegistrations(); // Refresh table
+    fetchRegistrations();
   };
 
   const handleResetTimeSlots = async () => {
@@ -46,19 +47,16 @@ export const ProfessorPortal = () => {
     );
     if (!confirmReset) return;
 
-    // Delete all timeSlots
     const timeSlotSnapshot = await getDocs(collection(db, 'timeSlots'));
     for (const docSnap of timeSlotSnapshot.docs) {
       await deleteDoc(doc(db, 'timeSlots', docSnap.id));
     }
 
-    // Delete all registrations
     const registrationSnapshot = await getDocs(collection(db, 'registrations'));
     for (const docSnap of registrationSnapshot.docs) {
       await deleteDoc(doc(db, 'registrations', docSnap.id));
     }
 
-    // Recreate default slots
     for (const slot of defaultSlots) {
       await addDoc(collection(db, 'timeSlots'), {
         label: slot,
@@ -82,6 +80,10 @@ export const ProfessorPortal = () => {
           alt="Background"
           className={styles.backgroundImage}
         />
+
+        <button className={styles.logoutButton} onClick={() => navigate('/')}>
+          Logout
+        </button>
 
         <div className={styles.scrollView}>
           <table className={styles.table}>
@@ -121,7 +123,7 @@ export const ProfessorPortal = () => {
           </table>
         </div>
 
-        <div style={{ textAlign: 'center', margin: '20px', zIndex: 1, width: '20%', alignSelf: 'center' }}>
+        <div style={{ textAlign: 'center', margin: '20px' }}>
           <button
             onClick={handleResetTimeSlots}
             style={{
