@@ -11,7 +11,7 @@ export const ChooseRole = () => {
     if (role === 'Student') {
       navigate('/studentregistration'); // Navigate to student registration
     } else if (role === 'Professor') {
-      alert(`${role} button pressed`);
+      navigate('/professorlogin'); // Navigate to professor login
     }
   };
 

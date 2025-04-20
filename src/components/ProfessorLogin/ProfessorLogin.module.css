@@ -1,0 +1,97 @@
+@import "../../vars.css";
+
+/* Layout Wrappers */
+.pageWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #7a7a7a;
+  cursor: pointer;
+  margin-bottom: 20px;
+  user-select: none;
+}
+
+.backArrow {
+  font-size: 24px;
+  margin-right: 6px;
+}
+
+/* Text Styles */
+.title {
+  font-size: 40px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+  font-family: var(--font-raleway);
+}
+
+.subtitle {
+  color: var(--color-grayText);
+  font-size: 22px;
+  margin-bottom: 48px;
+  max-width: 80%;
+}
+
+.form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.input {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.select {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  appearance: none;
+  cursor: pointer;
+}
+
+.submitButton {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: #004e64;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+}
+
+.alreadyText {
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+
