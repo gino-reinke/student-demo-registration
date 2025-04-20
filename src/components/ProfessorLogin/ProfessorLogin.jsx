@@ -22,7 +22,7 @@ export const ProfessorLogin = () => {
     const validPassword = 'Password123';
   
     if (formData.email === validEmail && formData.password === validPassword) {
-      navigate('/'); // Navigate to homepage or dashboard for now
+      navigate('/professorportal');
     } else {
       alert('Incorrect email address or password, please try again.');
     }

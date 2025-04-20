@@ -230,7 +230,7 @@ export const StudentRegistration = () => {
             style={{ backgroundColor: '#888', marginTop: '10px' }}
             onClick={handleResetTimeSlots}
           >
-            Reset & Populate Time Slots
+            Reset & Populate Time Slots (for demo purposes only)
           </button>
 
           <span className={styles.alreadyText}>

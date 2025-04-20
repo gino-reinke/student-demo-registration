@@ -3,6 +3,7 @@ import ChooseRole from "../pages/ChooseRolePage";
 import StudentRegistration from "../pages/StudentRegistrationPage";
 import ProfessorLogin from "../pages/ProfessorLoginPage";
 import StudentLogin from "../pages/StudentLoginPage";
+import ProfessorPortal from "../pages/ProfessorPortalPage";
 
 const AppRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const AppRoutes = () => {
         <Route path="/studentregistration" element={<StudentRegistration />} />
         <Route path="/professorlogin" element={<ProfessorLogin />} />
         <Route path="/studentlogin" element={<StudentLogin />} />
+        <Route path="/professorportal" element={<ProfessorPortal />} />
         {/* Add more routes as needed */}
       </Routes>
     </Router>
