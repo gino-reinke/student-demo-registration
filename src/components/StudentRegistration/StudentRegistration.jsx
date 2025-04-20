@@ -86,40 +86,69 @@ export const StudentRegistration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const selectedSlotObj = timeSlots.find(
       (slot) => `${slot.label}, ${slot.quantity} seats remaining` === formData.timeSlot
     );
-
+  
     if (!selectedSlotObj || selectedSlotObj.quantity <= 0) {
       alert('Selected time slot is full. Please choose another one.');
       return;
     }
-
+  
     try {
-      // Save registration with just the label
       const registrationData = {
         ...formData,
         timeSlot: selectedSlotObj.label,
       };
-
-      await addDoc(collection(db, 'registrations'), registrationData);
-
-      // Decrement slot quantity
+  
+      // Add registration
+      const docRef = await addDoc(collection(db, 'registrations'), registrationData);
+  
+      // Decrement time slot quantity
       const slotRef = doc(db, 'timeSlots', selectedSlotObj.id);
       await updateDoc(slotRef, {
         quantity: selectedSlotObj.quantity - 1,
       });
-
-      alert('Registration submitted successfully!');
-      navigate('/');
+  
+      // Show alert with submitted data
+      const submittedInfo = `
+  Registration Submitted!
+  
+  Name: ${formData.firstName} ${formData.lastName}
+  Student ID: ${formData.studentId}
+  Phone: ${formData.phoneNumber}
+  Email: ${formData.email}
+  Project Title: ${formData.projectTitle}
+  Time Slot: ${selectedSlotObj.label}
+  
+  Click "OK" to continue or "Cancel" to re-select a time slot.
+      `;
+  
+      const userConfirmed = window.confirm(submittedInfo);
+  
+      if (!userConfirmed) {
+        // User chose to re-select time slot
+        await deleteDoc(doc(db, 'registrations', docRef.id)); // delete the registration
+  
+        // Increment back the time slot
+        await updateDoc(slotRef, {
+          quantity: selectedSlotObj.quantity,
+        });
+  
+        navigate('/studentregistration');
+      } else {
+        navigate('/studentregistration');
+      }
+  
     } catch (error) {
       console.error('Error during registration:', error);
       alert('Registration failed. Please try again.');
     }
-
+  
     fetchTimeSlots();
   };
+  
 
   return (
     <div className={styles.pageWrapper}>

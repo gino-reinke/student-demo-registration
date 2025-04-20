@@ -9,6 +9,7 @@ import {
   deleteDoc,
   doc,
   addDoc,
+  updateDoc,
 } from 'firebase/firestore';
 
 export const ProfessorPortal = () => {
@@ -36,10 +37,45 @@ export const ProfessorPortal = () => {
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm('Are you sure you want to delete this registration?');
     if (!confirmDelete) return;
-
-    await deleteDoc(doc(db, 'registrations', id));
-    fetchRegistrations();
+  
+    try {
+      // Get the registration document before deletion to know the timeSlot
+      const registrationSnapshot = await getDocs(collection(db, 'registrations'));
+      const registrationToDelete = registrationSnapshot.docs.find(docSnap => docSnap.id === id);
+  
+      if (!registrationToDelete) {
+        console.error('Registration not found');
+        return;
+      }
+  
+      const registrationData = registrationToDelete.data();
+      const timeSlotLabel = registrationData.timeSlot;
+  
+      // Find the corresponding timeSlot doc
+      const timeSlotSnapshot = await getDocs(collection(db, 'timeSlots'));
+      const matchedSlot = timeSlotSnapshot.docs.find(
+        (slotDoc) => slotDoc.data().label === timeSlotLabel
+      );
+  
+      if (matchedSlot) {
+        const slotRef = doc(db, 'timeSlots', matchedSlot.id);
+        const currentQuantity = matchedSlot.data().quantity;
+  
+        // Increment quantity by 1
+        await updateDoc(slotRef, {
+          quantity: currentQuantity + 1,
+        });
+      }
+  
+      // Delete the registration
+      await deleteDoc(doc(db, 'registrations', id));
+      fetchRegistrations();
+    } catch (error) {
+      console.error('Error deleting registration:', error);
+      alert('An error occurred while deleting the registration.');
+    }
   };
+  
 
   const handleResetTimeSlots = async () => {
     const confirmReset = window.confirm(
