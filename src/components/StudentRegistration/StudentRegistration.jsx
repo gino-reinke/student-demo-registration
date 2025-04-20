@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from './StudentRegistration.module.css';
 import { useNavigate } from 'react-router-dom';
+import { db } from '../../firebase'; // <- Import db
+import { collection, addDoc } from 'firebase/firestore'; 
 
 export const StudentRegistration = () => {
   const navigate = useNavigate();
@@ -20,9 +22,17 @@ export const StudentRegistration = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData); // Submit logic goes here
+
+    try {
+      await addDoc(collection(db, 'registrations'), formData);
+      alert('Registration submitted successfully!');
+      navigate('/'); // Redirect to home or confirmation
+    } catch (error) {
+      console.error('Error adding document: ', error);
+      alert('Failed to submit registration.');
+    }
   };
 
   return (
