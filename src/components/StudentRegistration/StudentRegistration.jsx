@@ -137,7 +137,13 @@ export const StudentRegistration = () => {
           </button>
 
           <span className={styles.alreadyText}>
-            Already registered for a time slot? <a href="#">Click here</a>
+            Already registered for a time slot?{' '}
+            <a href="#" onClick={(e) => {
+              e.preventDefault();
+              navigate('/studentlogin');
+            }}>
+              Click here
+            </a>
           </span>
         </form>
       </div>
