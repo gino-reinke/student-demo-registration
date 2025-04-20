@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './ChooseRole.module.css';
 import { getImageUrl } from '../../utils';
 
 export const ChooseRole = () => {
   const [hovered, setHovered] = useState(null);
+  const navigate = useNavigate();
 
   const handleClick = (role) => {
-    alert(`${role} button pressed`);
+    if (role === 'Student') {
+      navigate('/studentregistration'); // Navigate to student registration
+    } else if (role === 'Professor') {
+      alert(`${role} button pressed`);
+    }
   };
 
   return (
