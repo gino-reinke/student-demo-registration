@@ -1,5 +1,60 @@
 @import "../../vars.css";
 
-.container {
-
-}
+.bgImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    z-index: 0;
+  }
+  
+  .contain {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .scroll-view {
+    height: 100%;
+    align-self: stretch;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .view {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #37383E70;
+    padding-top: 315px;
+    padding-bottom: 553px;
+    height: 100%;
+  }
+  
+  .view2 {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    background: #37383EB0;
+    border-radius: 8px;
+    border: 1px solid #FFFFFF4D;
+    padding-top: 39px;
+    padding-bottom: 39px;
+  }
+  
+  .text {
+    color: white;
+    font-size: 64px;
+    font-weight: bolder;
+    text-align: center;
+    margin-left: 14px;
+    margin-right: 14px;
+    font-family: var(--font-raleway);
+  }
+  

@@ -1,18 +1,17 @@
 import styles from '../App.module.css';
-import { LeftPane } from '../components/LeftPane';
-import { ChooseRole } from '../components/ChooseRole';
+import { LeftPane } from '../components/LeftPane/LeftPane';
 
-function HomePage() {
+function ChooseRolePage() {
     return (
       <div className={styles.App}>
         <div className={styles.leftPane}>
           <LeftPane />
         </div>
-        <div className={styles.rightPane}>
+        {/* <div className={styles.rightPane}>
           <ChooseRole />
-        </div>
+        </div> */}
       </div>
     );
-  }
-  
-  export default HomePage;
+}
+
+export default ChooseRolePage;
