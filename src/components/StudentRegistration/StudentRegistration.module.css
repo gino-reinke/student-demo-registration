@@ -29,3 +29,54 @@
   margin-bottom: 48px;
   max-width: 80%;
 }
+
+.form {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+}
+
+.input {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.select {
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  appearance: none;
+  cursor: pointer;
+}
+
+.submitButton {
+  padding-top: 16px;
+  padding-bottom: 16px;
+  background-color: #004e64;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+}
+
+.alreadyText {
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+
